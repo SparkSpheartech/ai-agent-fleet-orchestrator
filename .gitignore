@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# Secrets / credentials (never commit)
+*.token
+*.tokens
+*.b64
+*_env.b64
+agent_bot_tokens.*
+_gh/
+social_api.json
+social_sched.json
+
+# Personal / client data
+Linda Samsung/
+CircleDelivers_Application/
+vault_stage/
+personas/
+devices.db
+logs/
+
+# Models / large binaries
+*.bin
+*.gguf
+*.onnx
+*.pt
+*.pth
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini

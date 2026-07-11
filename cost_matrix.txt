@@ -1,0 +1,104 @@
+# SPARKSPHEAR TECH - COST MATRIX
+# This file is read by the app to calculate pricing
+# Edit values here and the app will use them automatically
+# Lines starting with # are comments
+
+[SERVICES]
+# Labor and service rates
+HOURLY_LABOR = 25.00
+MIN_LABOR_HOURS = 1.0
+DIAGNOSIS_FEE = 25.00
+TRIP_FEE_BASE = 35.00
+TRIP_FEE_INCLUDED_MILES = 15
+TRIP_FEE_PER_MILE = 0.67
+
+[PARTS]
+# Parts markup and fees
+PARTS_MARKUP = 0.25
+SOURCING_FEE = 15.00
+MIN_PARTS_PRICE = 10.00
+
+[SUPPORT]
+# Optional add-ons
+SUPPORT_24_7_MONTHLY = 15.00
+DATA_TRANSFER_FEE = 25.00
+SETUP_FEE = 20.00
+
+[DEVICE_PARTS]
+# Common parts by device type
+# Format: DEVICE_TYPE:PART_NAME = BASE_PRICE
+
+# Smartphones
+iPhone:screen = 45.00
+iPhone:battery = 25.00
+iPhone:charging_port = 15.00
+iPhone:home_button = 20.00
+iPhone:back_glass = 30.00
+iPhone:camera = 35.00
+iPhone:speaker = 18.00
+
+Samsung:screen = 50.00
+Samsung:battery = 22.00
+Samsung:charging_port = 18.00
+Samsung:speaker = 20.00
+
+Google:screen = 48.00
+Google:battery = 24.00
+Google:charging_port = 16.00
+
+# Tablets
+iPad:screen = 60.00
+iPad:battery = 30.00
+iPad:charging_port = 20.00
+iPad:home_button = 25.00
+iPad:digitizer = 35.00
+
+Samsung_Tab:screen = 40.00
+Samsung_Tab:battery = 20.00
+Samsung_Tab:digitizer = 25.00
+Samsung_Tab:charging_port = 18.00
+
+# Laptops
+Laptop:screen = 85.00
+Laptop:battery = 45.00
+Laptop:keyboard = 55.00
+Laptop:hard_drive = 65.00
+Laptop:ram = 35.00
+Laptop:charger = 30.00
+
+# Game Consoles
+Console:disc_drive = 40.00
+Console:power_supply = 35.00
+Console:hard_drive = 50.00
+Console:controller_port = 15.00
+
+[REPLACEMENT_DEVICES]
+# Common replacement device prices
+# Format: CATEGORY:OPTION = PRICE_RANGE
+
+Smartphone:Budget = $64-100
+Smartphone:Mid-Range = $150-250
+Smartphone:High-End = $300-500
+Smartphone:Premium = $800+
+
+Tablet:Budget = $64-100
+Tablet:Mid-Range = $150-200
+Tablet:High-End = $250-400
+Tablet:Premium = $500+
+
+Laptop:Budget = $200-350
+Laptop:Mid-Range = $400-600
+Laptop:High-End = $700-1200
+Laptop:Premium = $1500+
+
+[LOCATIONS]
+# Local store locations for replacement devices
+Walmart_Locations = 10420 Maysville Rd, Fort Wayne | 702 Coliseum Blvd W, Fort Wayne | 6151 Stellhorn Rd, Fort Wayne
+BestBuy_Locations = 4110 Jefferson Blvd, Fort Wayne, IN 46804
+Target_Locations = 1107 E Coliseum Blvd, Fort Wayne, IN 46805
+
+[POLICIES]
+# Business policies
+WARRANTY_DAYS = 30
+TRAVEL_RADIUS_MILES = 30
+RUSH_FEE_PERCENTAGE = 0.20

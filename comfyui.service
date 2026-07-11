@@ -1,0 +1,24 @@
+[Unit]
+Description=ComfyUI local AI content engine (GPU)
+After=network-online.target nss-lookup.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/mnt/pve/Storage1/comfyui
+Environment=PATH=/mnt/pve/Storage1/comfyui/venv/bin:/usr/bin:/bin
+Environment=COMFYUI_PATH=/mnt/pve/Storage1/comfyui
+ExecStartPre=/sbin/modprobe nvidia nvidia-modeset nvidia-uvm nvidia-drm
+ExecStart=/mnt/pve/Storage1/comfyui/venv/bin/python /mnt/pve/Storage1/comfyui/main.py \
+  --listen 0.0.0.0 \
+  --port 8188 \
+  --cuda-device 0 \
+  --disable-auto-launch
+Restart=on-failure
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

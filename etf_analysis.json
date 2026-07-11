@@ -1,0 +1,16 @@
+[
+  {
+    "symbol": "HLAL",
+    "price": 70.83000183105469,
+    "rsi": 51.46380786082582,
+    "signal_strength": 0,
+    "recommendation": "HOLD"
+  },
+  {
+    "symbol": "SPUS",
+    "price": 56.93000030517578,
+    "rsi": 51.42861367166217,
+    "signal_strength": 0,
+    "recommendation": "HOLD"
+  }
+]

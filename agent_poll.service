@@ -1,0 +1,20 @@
+[Unit]
+Description=SparkSphear agent collaboration poller
+After=network-online.target nfs-client.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=%i
+Environment=AGENT_NAME=%i
+Environment=AGENT_MAILBOX=/sparksphear/_agent_mailbox
+Environment=AGENT_POLL_INTERVAL=60
+Environment=HOME=/home/%i
+WorkingDirectory=/home/%i
+ExecStartPre=/bin/bash -c 'mkdir -p /sparksphear/_agent_mailbox/tasks/pending /sparksphear/_agent_mailbox/tasks/running /sparksphear/_agent_mailbox/results'
+ExecStart=/usr/bin/python3 /usr/local/bin/agent_poll.py
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

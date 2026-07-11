@@ -1,0 +1,17 @@
+[Unit]
+Description=ComfyUI MCP server for Shima (content engine bridge)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=shima
+WorkingDirectory=/home/shima/comfyui-mcp-server
+Environment=COMFYUI_URL=http://192.0.2.100:8188
+Environment=COMFY_MCP_ASSET_TTL_HOURS=48
+ExecStart=/home/shima/comfyui-mcp-server/venv/bin/python /home/shima/comfyui-mcp-server/server.py
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

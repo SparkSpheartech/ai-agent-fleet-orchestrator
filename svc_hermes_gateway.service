@@ -1,0 +1,15 @@
+[Unit]
+Description=Hermes Agent Gateway - Messaging Platform Integration
+After=network.target hermes.service
+Wants=hermes.service
+
+[Service]
+Type=simple
+User=__USER__
+WorkingDirectory=/home/__USER__
+ExecStart=/usr/local/lib/hermes-agent/venv/bin/hermes gateway
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

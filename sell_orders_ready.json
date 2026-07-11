@@ -1,0 +1,42 @@
+[
+  {
+    "symbol": "HLAL",
+    "current_price": 70.83000183105469,
+    "rsi": 51.46343482680229,
+    "resistance_levels": [
+      73.57991027832031,
+      72.33025360107422,
+      71.38999938964844
+    ],
+    "sell_orders": [
+      {
+        "level": 1,
+        "type": "Conservative",
+        "target": 73.57991027832031,
+        "gain_pct": 3.8824062913689783,
+        "reason": "Near historical resistance ($73.58)",
+        "priority": "HIGH"
+      }
+    ]
+  },
+  {
+    "symbol": "SPUS",
+    "current_price": 56.93000030517578,
+    "rsi": 51.42859918999304,
+    "resistance_levels": [
+      59.482364654541016,
+      57.95307540893555,
+      57.5
+    ],
+    "sell_orders": [
+      {
+        "level": 1,
+        "type": "Conservative",
+        "target": 59.482364654541016,
+        "gain_pct": 4.483338021575922,
+        "reason": "Near historical resistance ($59.48)",
+        "priority": "HIGH"
+      }
+    ]
+  }
+]
