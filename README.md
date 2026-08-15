@@ -29,11 +29,96 @@ cleanly without leaking the private topology.
 7. [Usage](#usage)
 8. [Security Model](#security-model)
 9. [Roadmap](#roadmap)
-10. [License](#license)
+|10. [License](#license)
 
 ---
 
 ## System Architecture
+
+### Mermaid Diagram (Before → After)
+
+```mermaid
+graph LR
+    subgraph BEFORE["❌ Before"]
+        B1[Manual task assignment]
+        B2[No shared agent state]
+        B3[Single machine bottleneck]
+        B4[Manual deployment]
+    end
+
+    subgraph AFTER["✅ After (NebulaForge AI Fleet)"]
+        A1[NFS-backed message bus]
+        A2[Auto task claiming + execution]
+        A3[Multi-VM horizontal scaling]
+        A4[One-command fleet bring-up]
+    end
+
+    B1 -->|NebulaForge| A1
+    B2 -->|NebulaForge| A2
+    B3 -->|NebulaForge| A3
+    B4 -->|NebulaForge| A4
+```
+
+### Mermaid Diagram
+
+```mermaid
+graph TB
+    subgraph HYPERVISOR["🔧 Proxmox VE Host"]
+        NFS[(NFS Share\n/sparksphear)]
+        VM1[VM 120 - Onyx\nHermes + Agent Poll]
+        VM2[VM 121 - Daisy\nHermes + Agent Poll]
+        VM3[VM 122 - Eissa\nHermes + Agent Poll]
+        VM4[VM 123 - Shima\nHermes + Agent Poll]
+        VM5[VM 124 - Travis\nHermes + Agent Poll]
+    end
+
+    subgraph MAILBOX["📬 NFS Agent Mailbox"]
+        T1[tasks/pending]
+        T2[tasks/running]
+        T3[tasks/done]
+        T4[tasks/failed]
+        R[results/]
+        M[inbox / outbox / broadcast]
+    end
+
+    subgraph WORKSTATION["💻 Operator Workstation"]
+        W1[SparkSphear_Main.py\nTk Dispatch Console]
+        W2[delegate.py\nPush Tasks]
+        W3[build_agents*.py\nFleet Bring-up]
+        W4[ETF Backtester\nStrategy Agent]
+        W5[Smart Pricing\nEngine Agent]
+    end
+
+    subgraph SERVICES["⚙️ Per-VM Services"]
+        S1[svc_hermes.service\nHermes Agent API]
+        S2[agent_poll.service\nTask Claim & Execute]
+        S3[comfyui.service\nImage Generation]
+    end
+
+    VM1 --- NFS
+    VM2 --- NFS
+    VM3 --- NFS
+    VM4 --- NFS
+    VM5 --- NFS
+    NFS --- MAILBOX
+    W1 --> T1
+    W2 --> T1
+    T1 --> S2
+    S2 --> T2
+    S2 --> T3
+    S2 --> T4
+    S2 --> R
+    S1 --> M
+
+    style VM1 fill:#4CAF50,stroke:#333,color:#fff
+    style VM2 fill:#2196F3,stroke:#333,color:#fff
+    style VM3 fill:#FF9800,stroke:#333,color:#fff
+    style VM4 fill:#9C27B0,stroke:#333,color:#fff
+    style VM5 fill:#00BCD4,stroke:#333,color:#fff
+    style NFS fill:#f44336,stroke:#333,color:#fff
+```
+
+### ASCII Architecture (Original)
 
 ```
                          ┌─────────────────────────────────────────┐
