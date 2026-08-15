@@ -10,6 +10,20 @@
 > dispatch console, trading backtester, OCR skill factory, and parts-pricing
 > engine that run the SparkSphear Tech Solutions business.
 
+---
+
+## ❌ The Problem
+
+Running multiple AI agents across separate VMs creates a coordination nightmare: How does Daisy know Onyx finished a task? What happens when the dispatch VM crashes mid-job? How do you scale from 2 agents to 10 without rewriting everything? Most agent platforms rely on centralized brokers (RabbitMQ, Kafka, Redis) that add latency, complexity, and single points of failure. For a fleet of autonomous business agents, the coordination layer must be simpler — and more resilient.
+
+**Before:** Centralized message brokers (RabbitMQ/Kafka), single points of failure, tight coupling between agents, complex scaling from 2 to N agents, high operational overhead for a small fleet.
+
+**After (NebulaForge NFS Bus):** The filesystem IS the message queue — atomic `os.rename` for task claiming, shared NFS for task/results storage, each agent is stateless and independently scalable. No broker to crash. No complex messaging protocols. Add a new agent VM in 30 seconds.
+
+---
+
+## 🧠 AI Agent Architecture
+
 This repository is the **sanitized, public build** of the original
 `Desktop/SparkSphear_App` workspace. All credentials, bot tokens, client PII,
 and personal notes have been removed; internal RFC1918 addresses have been
